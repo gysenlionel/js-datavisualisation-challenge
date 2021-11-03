@@ -405,20 +405,27 @@ const ctx2 = document.getElementById("graph2");
 const myChart2 = new Chart(ctx2, {
   type: "bar",
   data: {
-    labels: ["bel", "austria"],
+    labels: tableau2_pays,
     datasets: [
       {
         label: "2007-09",
-        data: [tableau2_val[1][1]],
+        data: tableau2_val[0],
         backgroundColor: ["rgba(52, 152, 219, 0.9)"],
         borderColor: ["rgba(52, 152, 219, 0.9)"],
         borderWidth: 1,
       },
       {
-        label: "2010-12",
-        data: [tableau2_val[1][1]],
+        label: "2007-09",
+        data: tableau2_val[1],
         backgroundColor: ["rgba(46, 204, 113, 0.9)"],
         borderColor: ["rgba(46, 204, 113, 09)"],
+        borderWidth: 1,
+      },
+      {
+        label: "2007-09",
+        data: tableau2_val[2],
+        backgroundColor: ["rgba(52, 152, 219, 0.9)"],
+        borderColor: ["rgba(52, 152, 219, 0.9)"],
         borderWidth: 1,
       },
     ],
@@ -431,5 +438,3 @@ const myChart2 = new Chart(ctx2, {
     },
   },
 });
-
-console.log(tableau2_val[1][1]);
