@@ -371,7 +371,8 @@ table2.before(canvas2);
 // --------------- table2 values -----------------------
 
 var tableau2_val = [];
-
+var tableau2_val07 = [];
+var tableau2_val10 = [];
 for (r = 0; r < tbody2.getElementsByTagName("tr").length; r++) {
   tableau2_val[r] = new Array();
 
@@ -385,7 +386,13 @@ for (r = 0; r < tbody2.getElementsByTagName("tr").length; r++) {
   }
 }
 
-console.log(tableau2_val);
+for (i = 0; i < tableau2_val.length; i++) {
+  tableau2_val07.push(tableau2_val[i][0]);
+}
+
+for (i = 0; i < tableau2_val.length; i++) {
+  tableau2_val10.push(tableau2_val[i][1]);
+}
 
 // ------------------- table2 country --------------------------
 
@@ -397,8 +404,6 @@ for (r = 0; r < tbody2.getElementsByTagName("tr").length; r++) {
   );
 }
 
-console.log(tableau2_pays);
-
 // ------------------------ graph2 ------------------------------
 
 const ctx2 = document.getElementById("graph2");
@@ -409,23 +414,16 @@ const myChart2 = new Chart(ctx2, {
     datasets: [
       {
         label: "2007-09",
-        data: tableau2_val[0],
+        data: tableau2_val07,
         backgroundColor: ["rgba(52, 152, 219, 0.9)"],
         borderColor: ["rgba(52, 152, 219, 0.9)"],
         borderWidth: 1,
       },
       {
-        label: "2007-09",
-        data: tableau2_val[1],
+        label: "2010-12",
+        data: tableau2_val10,
         backgroundColor: ["rgba(46, 204, 113, 0.9)"],
         borderColor: ["rgba(46, 204, 113, 09)"],
-        borderWidth: 1,
-      },
-      {
-        label: "2007-09",
-        data: tableau2_val[2],
-        backgroundColor: ["rgba(52, 152, 219, 0.9)"],
-        borderColor: ["rgba(52, 152, 219, 0.9)"],
         borderWidth: 1,
       },
     ],
@@ -438,3 +436,94 @@ const myChart2 = new Chart(ctx2, {
     },
   },
 });
+
+// -------------------------------------- Graph 3 -----------------------------------------------------
+var valeurs = [];
+var axisx = [];
+var i = 0;
+
+var canvas3 = document.createElement("canvas");
+var firstHeading = document.querySelector("#firstHeading");
+canvas3.setAttribute("id", "graph3");
+canvas3.setAttribute("width", "auto");
+canvas3.setAttribute("height", "150");
+firstHeading.after(canvas3);
+
+const ctx3 = document.getElementById("graph3");
+const myChart3 = new Chart(ctx3, {
+  type: "line",
+  data: {
+    labels: axisx,
+    datasets: [
+      {
+        label: "Statistiques de crimes par secondes",
+        data: valeurs,
+        borderColor: ["rgba(39, 192, 194, 1)"],
+        borderWidth: 1,
+      },
+    ],
+  },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  },
+});
+
+// ----------------------------- table 3 https://canvasjs.com/services/data/datapoints.php ------------------------------------
+function test() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "https://canvasjs.com/services/data/datapoints.php", true);
+  xhr.responseType = "json";
+  xhr.send();
+
+  // ----------------------------------- load, error, progress --------------------------------------
+  var datarecup = [];
+  var datarecup2 = [];
+  xhr.onload = function () {
+    if (xhr.status != 200) {
+      console.log(`err ${xhr.status} : ${xhr.statusText}`);
+    } else {
+      // console.log(JSON.stringify(xhr.response));
+      i++;
+      // recupère mon 2eme elem de mon tableau
+      datarecup = xhr.response.map((elem) => {
+        return elem[1];
+      });
+
+      datarecup2 = xhr.response.map((elem) => {
+        return elem[0];
+      });
+
+      axisx.push(datarecup2);
+      if (i > 10) {
+        myChart3.data.labels.shift();
+        myChart3.update();
+      }
+
+      valeurs.push(datarecup);
+      myChart3.update();
+
+      if (i > 10) {
+        myChart3.data.datasets[0].data.shift();
+      }
+      myChart3.update();
+
+      console.log(datarecup);
+    }
+  };
+
+  xhr.onerror = function () {
+    console.log("requ à échoué");
+  };
+
+  xhr.onprogress = function (event) {
+    lengthComputable = Boolean;
+    if (event.lengthComputable) {
+      console.log(`${event.loaded} octets reçu /${event.total}`);
+    }
+  };
+}
+setInterval(test, 1000);
