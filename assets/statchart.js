@@ -394,6 +394,7 @@ for (i = 0; i < tableau2_val.length; i++) {
   tableau2_val10.push(tableau2_val[i][1]);
 }
 
+console.log(tableau2_val[0]);
 // ------------------- table2 country --------------------------
 
 var tableau2_pays = [];
@@ -525,7 +526,7 @@ function test() {
       }
       myChart3.update();
 
-      console.log(datarecup);
+      // console.log(datarecup);
     }
   };
 

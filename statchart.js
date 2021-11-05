@@ -453,7 +453,7 @@ const ctx3 = document.getElementById("graph3");
 const myChart3 = new Chart(ctx3, {
   type: "line",
   data: {
-    labels: axisx,
+    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
     datasets: [
       {
         label: "Statistiques de crimes par secondes",
@@ -511,11 +511,11 @@ function test() {
         return elem[0];
       });
 
-      axisx.push(datarecup2);
-      if (i > 10) {
-        myChart3.data.labels.shift();
-        myChart3.update();
-      }
+      // axisx.push(datarecup2);
+      // if (i > 10) {
+      //   myChart3.data.labels.shift();
+      //   myChart3.update();
+      // }
 
       valeurs.push(datarecup);
       myChart3.update();
@@ -525,7 +525,7 @@ function test() {
       }
       myChart3.update();
 
-      console.log(datarecup);
+      // console.log(datarecup2);
     }
   };
 
