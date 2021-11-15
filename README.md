@@ -1,6 +1,6 @@
 # Data Visualisation
 
-> Exercice de data-visualisation consistant à récuperer des données dans deux    tableaux étant dans la page html ainsi qu'un tableau se trouvant dans une base de donnée. 
+> Exercice de data-visualisation consistant a récuperer des données dans deux tableaux étant dans la page html ainsi qu'un tableau se trouvant dans une base de donnée. 
 
 ## Table of Contents
 
