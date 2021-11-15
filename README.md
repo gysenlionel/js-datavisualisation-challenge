@@ -2,6 +2,8 @@
 
 > Exercice de data-visualisation consistant a récuperer des données dans deux tableaux étant dans la page html ainsi qu'un tableau se trouvant dans une base de donnée. 
 
+[link](https://github.com/gysenlionel/js-datavisualisation-challenge#technologies-used)
+
 ## Table of Contents
 
 1. [General Info](#general-information)
