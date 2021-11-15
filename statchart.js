@@ -510,7 +510,7 @@ function test() {
       datarecup2 = xhr.response.map((elem) => {
         return elem[0];
       });
-
+      console.log(datarecup);
       // axisx.push(datarecup2);
       // if (i > 10) {
       //   myChart3.data.labels.shift();
